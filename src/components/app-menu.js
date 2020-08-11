@@ -4,9 +4,6 @@ import {Icon} from "semantic-ui-react";
 
 // receive props passed from parent component
 const AppMenu = (props) => {
-
-
-
     return(
         <div className="ui menu" >
             <div className="ui button" onClick={props.onHome} >
