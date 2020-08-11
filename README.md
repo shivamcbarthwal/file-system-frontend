@@ -1,68 +1,31 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Front-end Windows Explorer App
 
-In the project directory, you can run:
+The objective of this app is to allow user to browse the local file system like MAC OS based 'Finder' windows explorer application.
 
-### `yarn start`
+### Key Functionalities of the App 
+- A user can view the contents of root in Icon view
+- Drill down to directories and sub-directories
+- Upload the file to the current path, current path updates on drilling down to directories, or sub directories
+- A user can trigger download to the file on click
+- A user can search the files, or directories/sub directories in the current path by entering keywords in the search bar. This feature must be efficient when there is a heavy volume of data and massive content in the directories
+- User can return to the root view by clicking on Home button
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+###  Framework and Technologies Used
+- This app is developed in JavaScript as a key language. React JS, a Javascript library alllowing to use JSX to write templat. For the design and styling, the app uses a popular front-end styling framework: "Semantic UI"
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Prequisite to launch the app
+- Run 'npm install' to download all the dependencies in package.json file (node modules folder is not present in the repo, so npm install will build the dependencies in the node module)
+- To start the app, run 'npm start' that will launch the app in development server
+- Browse the web app in [http://localhost:3000/]
 
-### `yarn test`
+### Brief Insight into Front-end Architecture
+- The app has one main component named as "windows-explorer" that encapsulates other two components => "file-upload", and "app-menu" as child components of windows-explorer.
+- Parent component is implemented as a functional based components based on hooks that enables to use states in components.
+- To get the content, comprising of directories, sub-directories, files in te root folder, we unleash the potential of react hooks -useState that provides destructurizing of array to use state, and a function to update the state on render. UseEffect is other hook, that serves as an alternate to "comonentDidMount". As we want to have root view upon rendering of the main component, we do the api call inside the "getRoot" method which is called inside "useEffect"
+- To drill down to the directories, we trigger "onClick" event that triggers either "showContent" method, or "downloadFile" method. We achieve this by looping the array returned as response of doing api get call to browse the root. If the type of the content is directory, then showContent is triggered, and if it is a file, downloadFile is triggered.
+- To handle upload, and render Menu in the main component, we achieve this by passing in the props from window-explorer component to these child components.
+- Upload component receive props => "onChange", and "onClick" with former recording the file input picked by user, and the latter triggers the upload in the upload handler method in the parent component. In the downloadFile method, the form data is posted to the end point to handle uploads, and to show the content in the current directory, the data which is an object is pushed to an array => ShownContents by calling setShownContents function and passing it the new object
+- The key functionality in the "AppMenu" component is to enable search by keyword functionality that updates the state "shownContents" which is basically the filtered array from "Contents". the props received "onSearch" triggers the filterContent method that loops through using filter in "Contents" state array which is our root, and checks if search content or keyword is contained in the contents, and accordingly setShownState updates. To enable to navigation to home page, the AppMenu recieves a prop "onHome", that triggers the getRoot method in arent component which is called inside "useffect" that renders the root component again. 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
