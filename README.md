@@ -14,7 +14,7 @@ The objective of this app is to allow user to browse the local file system like 
 - User can return to the root view by clicking on Home button
 
 ###  Framework and Technologies Used
-- This app is developed in JavaScript as a key language. React JS, a Javascript library alllowing to use JSX to write templat. For the design and styling, the app uses a popular front-end styling framework: "Semantic UI"
+- This app is developed in JavaScript as a key language. React JS, a Javascript library alllowing to use JSX to write template. For the design and styling, the app uses a popular front-end styling framework: "Semantic UI"
 
 ### Prequisite to launch the app
 - Run 'npm install' to download all the dependencies in package.json file (node modules folder is not present in the repo, so npm install will build the dependencies in the node module)
