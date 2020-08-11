@@ -10,6 +10,10 @@ const AppMenu = (props) => {
                 <Icon name='home'  size='large' color='black'  />
             </div>
 
+            <div className="item">
+                <p>/{props.currentDirectory}</p>
+            </div>
+
             <div className="right item">
                 <div className="ui icon input">
                     <input type="text" placeholder="Search..." onChange={props.onChange}/>

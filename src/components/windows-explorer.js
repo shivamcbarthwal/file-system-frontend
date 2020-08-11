@@ -130,6 +130,7 @@ const WindowsExplorer = () => {
                         onChange={event => setSearchContent(event.target.value)}
                         onSearch={filterContent}
                         onHome = {getRoot}
+                        currentDirectory = {currentDirectory}
                     />
                     <div className="ui cards">
 
